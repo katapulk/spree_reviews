@@ -1,8 +1,12 @@
 module Spree::Api::ApiHelpersDecorator
-  reviews_fields = [:avg_rating, :reviews_count]
-  reviews_fields.each { |attrib| Spree::PermittedAttributes.product_attributes << attrib }
+  extend ActiveSupport::Concern
 
-  reviews_fields.each { |attrib| class_variable_set(:@@product_attributes, class_variable_get(:@@product_attributes).push(attrib)) }
+  included do
+    reviews_fields = [:avg_rating, :reviews_count]
+    reviews_fields.each { |attrib| Spree::PermittedAttributes.product_attributes << attrib }
+
+    reviews_fields.each { |attrib| class_variable_set(:@@product_attributes, class_variable_get(:@@product_attributes).push(attrib)) }
+  end
 end
 
 Spree::Api::ApiHelpers.prepend(Spree::Api::ApiHelpersDecorator)

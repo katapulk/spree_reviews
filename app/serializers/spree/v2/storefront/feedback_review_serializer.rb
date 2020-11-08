@@ -6,8 +6,8 @@ module Spree
 
         attributes :rating, :comment, :created_at
 
-        belongs_to :review, record_type: :review, serializer: :review
-        belongs_to :user,   record_type: :user,    serializer: :user
+        belongs_to :review
+        belongs_to :user
       end
     end
   end

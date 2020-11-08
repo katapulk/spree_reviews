@@ -8,10 +8,10 @@ module Spree
 
         attribute :is_approved,  &:approved?
 
-        belongs_to :product,   record_type: :product, serializer: :product
-        belongs_to :user,      record_type: :user,    serializer: :user
+        belongs_to :product
+        belongs_to :user
 
-        has_many   :feedback_reviews, record_type: :feedback_review, serializer: :feedback_review
+        has_many   :feedback_reviews
       end
     end
   end

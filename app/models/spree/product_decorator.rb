@@ -1,5 +1,5 @@
 # Add access to reviews/ratings to the product model
-Spree::Product.class_eval do
+module Spree::ProductDecorator
   has_many :reviews
 
   def stars
@@ -16,3 +16,5 @@ Spree::Product.class_eval do
     save
   end
 end
+
+Spree::Product.prepend(Spree::ProductDecorator)

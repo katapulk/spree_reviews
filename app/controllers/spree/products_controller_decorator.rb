@@ -1,9 +1,7 @@
 module Spree::ProductsControllerDecorator
-  extend ActiveSupport::Concern
-
-  included do
-    helper Spree::ReviewsHelper
+  def self.prepended(base)
+    base.helper Spree::ReviewsHelper
   end
-end
 
-Spree::ProductsController.prepend(Spree::ProductsControllerDecorator)
+  Spree::ProductsController.prepend self
+end

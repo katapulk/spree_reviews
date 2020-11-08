@@ -1,9 +1,7 @@
 # Add access to reviews/ratings to the product model
 module Spree::ProductDecorator
-  extend ActiveSupport::Concern
-
-  included do
-    has_many :reviews
+  def self.prepended(base)
+    base.has_many :reviews
   end
 
   def stars
@@ -19,6 +17,6 @@ module Spree::ProductDecorator
     end
     save
   end
-end
 
-Spree::Product.prepend(Spree::ProductDecorator)
+  Spree::Product.prepend self
+end

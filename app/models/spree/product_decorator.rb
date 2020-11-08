@@ -1,6 +1,10 @@
 # Add access to reviews/ratings to the product model
 module Spree::ProductDecorator
-  has_many :reviews
+  extend ActiveSupport::Concern
+
+  included do
+    has_many :reviews
+  end
 
   def stars
     avg_rating.try(:round) || 0
